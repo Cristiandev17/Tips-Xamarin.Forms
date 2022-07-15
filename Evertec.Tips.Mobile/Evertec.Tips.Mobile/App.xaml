@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication
+    x:Class="Evertec.Tips.Mobile.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:Evertec.Tips.Mobile.Converters;assembly=Evertec.Tips.Mobile"
+    xmlns:prism="http://prismlibrary.com">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PlaceholderColor">#757575</Color>
+            <Color x:Key="ColorLine">#E4E4E4</Color>
+            <Color x:Key="Black">#363432</Color>
+            <Color x:Key="Tertiary">#196774</Color>
+            <Color x:Key="Gray">#90A19D</Color>
+            <Color x:Key="Secondary">#F0941F</Color>
+            <Color x:Key="Primary">#EF6024</Color>
+
+            <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+
+            <OnPlatform x:Key="PagePadding" x:TypeArguments="Thickness">
+                <On Platform="Android, iOS" Value="20, 10" />
+            </OnPlatform>
+
+            <Style TargetType="NavigationPage">
+                <Setter Property="HasNavigationBar" Value="True" />
+                <Setter Property="BarTextColor" Value="{StaticResource ColorLine}" />
+                <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
+            </Style>
+
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+
+            <Style x:Key="buttonGeneric" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource Tertiary}" />
+                <Setter Property="CornerRadius" Value="25" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextTransform" Value="None" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="{StaticResource ColorLine}" />
+            </Style>
+
+            <Style x:Key="invalidEntry" TargetType="Entry">
+                <Setter Property="TextColor" Value="Red" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</prism:PrismApplication>

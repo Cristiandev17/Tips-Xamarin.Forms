@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Evertec.Tips.Mobile.Views.TipsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:Evertec.Tips.Mobile.Helpers;assembly=Evertec.Tips.Mobile"
+    x:Name="pgTips"
+    Title="{helpers:TextFieldHelper strTips}">
+    <ContentPage.Content>
+        <Grid>
+            <Grid
+                HorizontalOptions="Center"
+                IsVisible="{Binding IsThereTips, Converter={StaticResource InverseBoolConverter}, Mode=TwoWay}"
+                RowDefinitions="Auto, Auto, Auto"
+                VerticalOptions="CenterAndExpand">
+                <Image
+                    Grid.Row="0"
+                    HeightRequest="120"
+                    Source="ic_listEmpty"
+                    WidthRequest="80" />
+                <Label Grid.Row="1" Text="{helpers:TextFieldHelper strNoCreateTip}" />
+                <Button
+                    Grid.Row="2"
+                    Command="{Binding CreateTipCommand}"
+                    Style="{StaticResource buttonGeneric}"
+                    Text="{helpers:TextFieldHelper strNewTip}" />
+            </Grid>
+            <Grid IsVisible="{Binding IsThereTips, Mode=TwoWay}">
+                <ListView
+                    HasUnevenRows="true"
+                    HorizontalOptions="FillAndExpand"
+                    IsPullToRefreshEnabled="True"
+                    IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                    ItemsSource="{Binding Tips}"
+                    RefreshCommand="{Binding RefreshTipsCommand}"
+                    SeparatorColor="{StaticResource ColorLine}"
+                    VerticalOptions="FillAndExpand">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame
+                                    Margin="15"
+                                    BackgroundColor="{StaticResource Secondary}"
+                                    CornerRadius="10"
+                                    HasShadow="True"
+                                    HeightRequest="50"
+                                    IsClippedToBounds="True">
+                                    <Grid ColumnDefinitions="Auto, *">
+                                        <StackLayout Grid.Column="0" Orientation="Vertical">
+                                            <Label Text="{Binding CreationDate}" TextColor="{StaticResource ColorLine}" />
+                                            <Label Text="{Binding Title}" TextColor="{StaticResource ColorLine}" />
+                                        </StackLayout>
+                                        <StackLayout
+                                            Grid.Column="1"
+                                            HorizontalOptions="EndAndExpand"
+                                            Orientation="Horizontal"
+                                            Spacing="20">
+                                            <Image Source="list" WidthRequest="40">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.DetailTipCommand, Source={x:Reference pgTips}}" CommandParameter="{Binding}" />
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                            <Image Source="trash" WidthRequest="40">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.DeleteTipCommand, Source={x:Reference pgTips}}" CommandParameter="{Binding}" />
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </StackLayout>
+
+
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ImageButton
+                    Margin="0,0,20,20"
+                    Padding="0"
+                    Command="{Binding CreateTipCommand}"
+                    HeightRequest="56"
+                    HorizontalOptions="End"
+                    Source="ic_plus"
+                    VerticalOptions="End"
+                    Visual="Material"
+                    WidthRequest="56" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
