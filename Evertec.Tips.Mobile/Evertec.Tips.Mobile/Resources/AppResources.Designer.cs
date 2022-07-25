@@ -169,6 +169,15 @@ namespace Evertec.Tips.Mobile.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ingresar.
+        /// </summary>
+        internal static string strLogin {
+            get {
+                return ResourceManager.GetString("strLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ¿Esta seguro que desea eliminar el Consejo?.
         /// </summary>
         internal static string strMessageDeleteTip {
@@ -264,6 +273,15 @@ namespace Evertec.Tips.Mobile.Resources {
         internal static string strTitlePickerAuthors {
             get {
                 return ResourceManager.GetString("strTitlePickerAuthors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cédula.
+        /// </summary>
+        internal static string strUserName {
+            get {
+                return ResourceManager.GetString("strUserName", resourceCulture);
             }
         }
         

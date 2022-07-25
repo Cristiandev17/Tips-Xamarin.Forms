@@ -3,6 +3,7 @@ using Evertec.Tips.Mobile.Infrastructure.Interfaces;
 using Evertec.Tips.Mobile.Infrastructure.Providers;
 using Evertec.Tips.Mobile.Infrastructure.Repositories;
 using Evertec.Tips.Mobile.Interfaces;
+using Evertec.Tips.Mobile.Providers.Cache;
 using Evertec.Tips.Mobile.Providers.Dialog;
 using Evertec.Tips.Mobile.Providers.Progress;
 using Evertec.Tips.Mobile.Providers.Toast;
@@ -28,7 +29,7 @@ namespace Evertec.Tips.Mobile
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            await NavigationService.NavigateAsync(UriNavigationHelper.Tips);
+            await NavigationService.NavigateAsync(UriNavigationHelper.LoginUser);
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -40,11 +41,13 @@ namespace Evertec.Tips.Mobile
             //Services
             containerRegistry.Register<ITipService, TipService>();
             containerRegistry.Register<IAuthorService, AuthorService>();
+            containerRegistry.Register<IRealTimeTipService, RealTimeTipService>();
 
             //Providers
             containerRegistry.Register<IDialogProvider, DialogProvider>();
             containerRegistry.Register<IProgressProvider, ProgressProvider>();
             containerRegistry.Register<IToastProvider, ToastProvider>();
+            containerRegistry.Register<ICacheProvider, CacheProvider>();
             containerRegistry.Register<IDatabaseContextProvider, DatabaseContextProvider>();
 
             //Repositories
@@ -55,6 +58,7 @@ namespace Evertec.Tips.Mobile
             containerRegistry.RegisterForNavigation<TipsPage, TipsPageViewModel>();
             containerRegistry.RegisterForNavigation<AddTipPage, AddTipPageViewModel>();
             containerRegistry.RegisterForNavigation<DetailTipPage, DetailTipPageViewModel>();
+            containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
         }
 
         public static T Resolve<T>()

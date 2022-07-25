@@ -31,14 +31,12 @@
                 Margin="50,0"
                 HorizontalTextAlignment="Center"
                 Placeholder="{helpers:TextFieldHelper strTitle}"
-                Text="{Binding TitleTip}">
-            </Entry>
+                Text="{Binding TitleTip}" />
 
             <Editor
                 HeightRequest="200"
                 Placeholder="{helpers:TextFieldHelper strDescription}"
-                Text="{Binding Description}">
-            </Editor>
+                Text="{Binding Description}" />
 
             <Button
                 Command="{Binding SaveCommand}"

@@ -12,5 +12,6 @@ namespace Evertec.Tips.Mobile.Domain.Helpers
         public static string DetailTip = "DetailTipPage";
         public static string AddTip = "AddTipPage";
         public static string EditTip = "AddTipPage";
+        public static string LoginUser = "LoginPage";
     }
 }

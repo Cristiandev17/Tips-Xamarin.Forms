@@ -153,6 +153,9 @@
   <data name="strLoading" xml:space="preserve">
     <value>Cargando ......</value>
   </data>
+  <data name="strLogin" xml:space="preserve">
+    <value>Ingresar</value>
+  </data>
   <data name="strMessageDeleteTip" xml:space="preserve">
     <value>¿Esta seguro que desea eliminar el Consejo?</value>
   </data>
@@ -185,6 +188,9 @@
   </data>
   <data name="strTitlePickerAuthors" xml:space="preserve">
     <value>Seleccione un Autor</value>
+  </data>
+  <data name="strUserName" xml:space="preserve">
+    <value>Cédula</value>
   </data>
   <data name="strWarning" xml:space="preserve">
     <value>Advertencia</value>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Evertec.Tips.Mobile.Domain.Dtos;
 using Evertec.Tips.Mobile.Domain.Entities;
 using Evertec.Tips.Mobile.Domain.Models;
 
@@ -43,6 +44,19 @@ namespace Evertec.Tips.Mobile.Domain.Mappers
             }
 
             return Task.FromResult(itemsModel);
+        }
+
+        public static Task<TipEntity> MapTipEntity(TipDto item)
+        {
+            return Task.FromResult(new TipEntity
+            {
+                Title = item.Title,
+                Description = item.Description,
+                Id = item.Id,
+                CreationDate = item.CreationDate,
+                UpdateDate = item.UpdateDate,
+                AuthorId = item.AuthorId
+            });
         }
     }
 }

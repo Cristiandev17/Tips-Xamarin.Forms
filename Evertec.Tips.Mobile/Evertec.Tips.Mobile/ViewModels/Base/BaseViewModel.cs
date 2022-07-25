@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Evertec.Tips.Mobile.Domain.Models;
 using Evertec.Tips.Mobile.Helpers;
 using Evertec.Tips.Mobile.Interfaces;
+using Evertec.Tips.Mobile.Providers.Cache;
 using Evertec.Tips.Mobile.Providers.Dialog;
 using Evertec.Tips.Mobile.Providers.Progress;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -23,17 +24,30 @@ namespace Evertec.Tips.Mobile.ViewModels.Base
         protected INavigationService NavigationService;
         protected ITipService TipService;
         protected IAuthorService AuthorService;
+        protected IRealTimeTipService RealTimeTipService;
 
         protected readonly IDialogProvider DialogProvider;
         protected readonly IProgressProvider ProgressProvider;
+        protected readonly ICacheProvider CacheProvider;
 
         public BaseViewModel(INavigationService navigationService)
         {
-            this.NavigationService = navigationService;
-            this.TipService = App.Resolve<ITipService>();
-            this.DialogProvider = App.Resolve<IDialogProvider>();
-            this.ProgressProvider = App.Resolve<IProgressProvider>();
-            this.AuthorService = App.Resolve<IAuthorService>();
+            try
+            {
+                this.NavigationService = navigationService;
+                this.TipService = App.Resolve<ITipService>();
+                this.DialogProvider = App.Resolve<IDialogProvider>();
+                this.ProgressProvider = App.Resolve<IProgressProvider>();
+                this.AuthorService = App.Resolve<IAuthorService>();
+                this.RealTimeTipService = App.Resolve<IRealTimeTipService>();
+                this.CacheProvider = App.Resolve<ICacheProvider>();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+           
         }
 
         protected async Task ShowProgress()

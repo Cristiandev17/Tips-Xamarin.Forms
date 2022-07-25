@@ -6,6 +6,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Evertec.Tips.Mobile.Domain.Dtos;
 using Evertec.Tips.Mobile.Domain.Exceptions;
 
 namespace Evertec.Tips.Mobile.Services
@@ -35,7 +36,7 @@ namespace Evertec.Tips.Mobile.Services
             }
             else
                 throw new AppException(responseValidate.CodeMessage);
-            
+
             return result;
         }
 
@@ -58,6 +59,20 @@ namespace Evertec.Tips.Mobile.Services
         {
             var list = await _tipRepository.GetAll();
             return await TipMapper.MapTipsModel(list.OrderBy(i => i.CreationDate).ToList());
+        }
+
+        public async Task<bool> UpdateTip(TipDto tip)
+        {
+            var tipEntity = await TipMapper.MapTipEntity(tip);
+            var result = await _tipRepository.UpdateTip(tipEntity);
+            return result;
+        }
+
+        public async Task<bool> AddTip(TipDto tip)
+        {
+            var tipEntity = await TipMapper.MapTipEntity(tip);
+            var result = await _tipRepository.AddTip(tipEntity);
+            return result;
         }
     }
 }
